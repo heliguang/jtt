@@ -1,0 +1,77 @@
+
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+{%  load staticfiles %}
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>协议解析引擎</title>
+<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/decode.css' %}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="container">
+	<div id="bd">
+        <div id="main">
+        	<h1 class="title">
+            	<div class="logo large"></div>
+            </h1>
+            <div class="nav ue-clear">
+            	<ul class="searchList">
+                    <li class="searchItem current">十六进制</li>
+                </ul>
+            </div>
+            <div class="inputArea">
+            	<input type="text" class="searchInput" />
+                <input type="button" class="searchButton" onclick="decode()" />
+
+                <div class="resultArea">
+                 <ul class="resultList"></ul>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript">
+    var decode_url = "/decode/"
+
+    function decode(){
+        var searchText = $(".searchInput").val();
+        $(".resultList").html("");
+        if (searchText.length <= 0) {
+            $(".resultList").append('<li>输入数据不能为空</li>');
+            $(".resultList").show();
+            return
+        }
+        $.ajax({
+            cache: false,
+            type: 'get',
+            dataType:'json',
+            url:decode_url+"?s="+searchText,
+            async: true,
+            success: function(data) {
+                console.log('success')
+                console.log(data)
+
+                let tmpHtml = "";
+                for (let key in data){
+                    tmpHtml += '<li>'+ '<span class="key">[' + key + ']</span>' + data[key] +'</li>'
+                }
+
+                if (tmpHtml.length === 0){
+                    tmpHtml += '<li>服务端返回数据为空</li>'
+                }
+
+                $(".resultList").append(tmpHtml);
+                $(".resultList").show();
+            },
+            fail: function () {
+                console.log('fail')
+            }
+        });
+    }
+</script>
+</html>

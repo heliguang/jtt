@@ -1,0 +1,21 @@
+@charset "utf-8";
+html{*overflow:auto;}
+#main{width:60%;margin:75px auto 0;}
+#bd{margin-bottom:20px;}
+.logo.large{margin:0px auto 10px auto;width:100%;height:144px;background: url(../img/logo_protocol_analysis.png) no-repeat center center;}
+
+/*nav样式*/
+.nav{margin-bottom:10px;}
+.searchList{float:left;padding-left:5px;width:100%;}
+.searchList .searchItem{float:left;margin-right:15px;font-size:14px;padding:0 0 2px 2px;cursor:pointer;height:18px;}
+.searchList .searchItem.current{color:#0080cc;border-bottom:2px solid #9cc813;font-weight:bold;}
+
+/*input搜索区域*/
+.inputArea{position:relative;margin-bottom:65px;display: flex;}
+.inputArea .searchInput{border:1px solid #bfbfbf;padding:0 15px;outline:none;height:40px;*line-height:40px;display: inline;flex: 1; background:url(../img/bg_input.png);font-size:14px;}
+.inputArea .searchButton{display: inline;width:100px;height:42px;*height:41px;background:url(../img/bg_search.png) no-repeat;border:none;cursor:pointer;}
+/*结果*/
+.resultArea .resultList{display:none;position:absolute;width: 100%;left:0;top:42px;*top:43px;flex: 1;;padding:5px 0;margin-top: 20px;background:#fff;border-left:1px solid #bfbfbf;}
+.resultArea .resultList li{padding:2px 15px;font-size:14px;}
+.resultArea .resultList li:hover{background:#f0f0f0;color:#0080cc;font-weight:bold;}
+.resultArea .resultList li .key{color:#d90909;}
